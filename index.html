@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>بنك أسئلة علم البيئة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 p-6">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6">بنك أسئلة علم البيئة</h1>
+        <div id="questions-container" class="space-y-4"></div>
+    </div>
+    <script>
+        fetch('questions.json')
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('questions-container');
+                data.forEach(q => {
+                    const div = document.createElement('div');
+                    div.className = 'bg-white p-6 rounded-lg shadow';
+                    div.innerHTML = `<h2 class="font-bold">${q.question}</h2><p class="text-sm text-gray-500">الدرس: ${q.lesson}</p>`;
+                    container.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>
